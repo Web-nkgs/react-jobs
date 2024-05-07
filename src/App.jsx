@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const name = 'Jane'
+  const x = 10
+  const y = 12
+  const names = ['Brad', 'Mary', 'Jimmy', 'Sara']
+  const loggedIn = true
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
+      <div className="text-5xl">App</div>
+      <p>Hello {name}</p>
+      <p>
+        The sum of {x} and {y} is {x+y}
       </p>
+      <ul>
+        { names.map((name, index) => 
+          <li key={index}>{name}</li>
+        )}
+      </ul>
+      {/* {loggedIn ? <h1>Hello Member!</h1> : <h1>Hello Guest</h1>} */}
+      {loggedIn && <h1>Hello Member!</h1>}
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
