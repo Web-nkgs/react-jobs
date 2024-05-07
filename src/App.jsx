@@ -6,12 +6,16 @@ const App = () => {
   const y = 12
   const names = ['Brad', 'Mary', 'Jimmy', 'Sara']
   const loggedIn = true
+  const styles = {
+    color: 'red',
+    fontSize: '30px'
+  }
 
   return (
     <>
       <div className="text-5xl">App</div>
-      <p>Hello {name}</p>
-      <p>
+      <p style={{ color: 'red', fontSize: '23px' }}>Hello {name}</p>
+      <p style={styles}>
         The sum of {x} and {y} is {x+y}
       </p>
       <ul>
