@@ -1,10 +1,20 @@
 import React from "react";
-import { Link, useLoaderData, useParams } from "react-router-dom";
-import { FaArrowLeft, FaLocationArrow } from 'react-icons/fa'
+import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeft, FaLocationArrow } from "react-icons/fa";
 
-const JobPage = () => {
+const JobPage = ({ deleteJob }) => {
   const { id } = useParams();
   const job = useLoaderData();
+  const navigate = useNavigate()
+
+  const onDeleteClick = () => {
+    const didConfirm = window.confirm('Are you sure you want to delete this job?')
+
+    if (!didConfirm) return 
+
+    deleteJob(id)
+    return navigate('/jobs')
+  };
 
   return (
     <>
@@ -14,7 +24,7 @@ const JobPage = () => {
             to="/jobs"
             className="text-indigo-500 hover:text-indigo-600 flex items-center"
           >
-            <FaArrowLeft className="mr-2"/> Back to Job Listings
+            <FaArrowLeft className="mr-2" /> Back to Job Listings
           </Link>
         </div>
       </section>
@@ -27,7 +37,7 @@ const JobPage = () => {
                 <div className="text-gray-500 mb-4">{job.type}</div>
                 <h1 className="text-3xl font-bold mb-4">{job.title}</h1>
                 <div className="text-gray-500 mb-4 flex items-center justify-center md:justify-start">
-                <FaLocationArrow className="text-orange-700 mr-2"/>
+                  <FaLocationArrow className="text-orange-700 mr-2" />
                   <p className="text-orange-700">{job.location}</p>
                 </div>
               </div>
@@ -81,7 +91,10 @@ const JobPage = () => {
                 >
                   Edit Job
                 </Link>
-                <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
+                <button
+                  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+                  onClick={onDeleteClick}
+                >
                   Delete Job
                 </button>
               </div>
